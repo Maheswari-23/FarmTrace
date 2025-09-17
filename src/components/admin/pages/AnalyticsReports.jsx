@@ -1,75 +1,140 @@
-import React from 'react';
-import { Download, FileText, Calendar, MapPin, Leaf as LeafIcon, ListFilter } from 'lucide-react';
+import React, { useState } from "react";
+import {
+  BarChart,
+  Bar,
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+} from "recharts";
+import "../styles/AnalyticsReports.css"; // Import external CSS
+
+// Mock Data
+const priceVolatilityData = [
+  { month: "Jan", volatility: 5 },
+  { month: "Feb", volatility: 9 },
+  { month: "Mar", volatility: 7 },
+  { month: "Apr", volatility: 6 },
+  { month: "May", volatility: 11 },
+];
+
+const farmToShelfData = [
+  { crop: "Wheat", avgDays: 7 },
+  { crop: "Rice", avgDays: 12 },
+  { crop: "Tomato", avgDays: 4 },
+  { crop: "Potato", avgDays: 9 },
+];
 
 const AnalyticsReports = () => {
+  const [filters, setFilters] = useState({
+    dateRange: "",
+    region: "",
+    cropType: "",
+    transactionType: "",
+  });
+
+  const [reportType, setReportType] = useState("");
+  const [format, setFormat] = useState("");
+
+  const handleDownload = () => {
+    if (!reportType || !format) {
+      alert("Please select report type and format.");
+      return;
+    }
+    alert(`Report "${reportType}" will be downloaded as ${format.toUpperCase()}`);
+  };
+
   return (
-    <div>
-      <h2 className="page-title">Analytics & Reports</h2>
-      <div className="analytics-layout">
-        <div className="filters-panel card">
-          <h3 className="panel-title">Advanced Filters</h3>
-          <div className="filter-group">
-            <label><Calendar size={14} /> Date Range</label>
-            <input type="date" />
-            <input type="date" />
-          </div>
-          <div className="filter-group">
-            <label><MapPin size={14} /> Region/District</label>
-            <select>
-              <option>All Regions</option>
-              <option>Cuttack</option>
-              <option>Puri</option>
-              <option>Bhubaneswar</option>
-            </select>
-          </div>
-          <div className="filter-group">
-            <label><LeafIcon size={14} /> Crop Type</label>
-            <select>
-              <option>All Crops</option>
-              <option>Paddy Rice</option>
-              <option>Mango</option>
-              <option>Turmeric</option>
-            </select>
-          </div>
-           <div className="filter-group">
-            <label><ListFilter size={14} /> Transaction Type</label>
-            <select>
-              <option>All Transactions</option>
-              <option>Asset Creation</option>
-              <option>Ownership Transfer</option>
-            </select>
-          </div>
-          <button className="btn btn-primary filter-apply-btn">Apply Filters</button>
+    <div className="analytics-container">
+      {/* Header */}
+      <h1 className="analytics-header">Analytics & Reports</h1>
+      <p className="analytics-subtext">
+        Analyze trends, identify bottlenecks, and generate official reports.
+      </p>
+
+      {/* Filters Panel */}
+      <div className="filters-panel">
+        <input
+          type="date"
+          onChange={(e) => setFilters({ ...filters, dateRange: e.target.value })}
+        />
+        <select onChange={(e) => setFilters({ ...filters, region: e.target.value })}>
+          <option value="">Select Region</option>
+          <option>North</option>
+          <option>South</option>
+          <option>East</option>
+          <option>West</option>
+        </select>
+        <select onChange={(e) => setFilters({ ...filters, cropType: e.target.value })}>
+          <option value="">Select Crop Type</option>
+          <option>Wheat</option>
+          <option>Rice</option>
+          <option>Tomato</option>
+          <option>Potato</option>
+        </select>
+        <select
+          onChange={(e) => setFilters({ ...filters, transactionType: e.target.value })}
+        >
+          <option value="">Transaction Type</option>
+          <option>CreateAsset</option>
+          <option>TransferAsset</option>
+          <option>UpdateAsset</option>
+        </select>
+      </div>
+
+      {/* Interactive Dashboards */}
+      <div className="dashboards-grid">
+        {/* Price Volatility */}
+        <div className="chart-card">
+          <h2 className="chart-title">Price Volatility Analysis</h2>
+          <ResponsiveContainer width="100%" height={250}>
+            <LineChart data={priceVolatilityData}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="month" />
+              <YAxis />
+              <Tooltip />
+              <Legend />
+              <Line type="monotone" dataKey="volatility" stroke="#7c3aed" />
+            </LineChart>
+          </ResponsiveContainer>
         </div>
 
-        <div className="dashboard-panel">
-          <div className="card">
-            <h3 className="chart-title">Price Volatility Analysis</h3>
-            <div className="chart-placeholder">Interactive chart placeholder...</div>
-          </div>
-          <div className="card">
-            <h3 className="chart-title">Average Farm-to-Shelf Time</h3>
-            <div className="chart-placeholder">Interactive chart placeholder...</div>
-          </div>
-          <div className="card">
-            <h3 className="chart-title">Supply Chain Bottleneck Identifier</h3>
-            <div className="chart-placeholder">Interactive chart placeholder...</div>
-          </div>
+        {/* Farm-to-Shelf Time */}
+        <div className="chart-card">
+          <h2 className="chart-title">Average Farm-to-Shelf Time</h2>
+          <ResponsiveContainer width="100%" height={250}>
+            <BarChart data={farmToShelfData}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="crop" />
+              <YAxis />
+              <Tooltip />
+              <Legend />
+              <Bar dataKey="avgDays" fill="#8ceb4eff" />
+            </BarChart>
+          </ResponsiveContainer>
         </div>
+      </div>
 
-        <div className="reports-panel card">
-          <h3 className="panel-title">Report Generation</h3>
-          <p className="panel-description">Select parameters using the filters, then generate your report.</p>
-          <select>
-            <option>Select Report Type</option>
+      {/* Report Generation */}
+      <div className="report-generation">
+        <h2 className="chart-title">Report Generation</h2>
+        <div className="report-controls">
+          <select onChange={(e) => setReportType(e.target.value)}>
+            <option value="">Select Report Type</option>
             <option>Monthly Produce Volume</option>
             <option>ESG Compliance Summary</option>
-            <option>Regional Activity Report</option>
+            <option>Supply Chain Bottlenecks</option>
           </select>
-          <div className="report-buttons">
-            <button className="btn btn-primary"><Download size={16}/> Download PDF</button>
-            <button className="btn btn-secondary"><FileText size={16}/> Export to CSV</button>
-          </div>
+          <select onChange={(e) => setFormat(e.target.value)}>
+            <option value="">Export Format</option>
+            <option>pdf</option>
+            <option>csv</option>
+          </select>
+          <button onClick={handleDownload}>Download</button>
         </div>
       </div>
     </div>
