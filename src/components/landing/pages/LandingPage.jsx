@@ -127,7 +127,7 @@ const LandingPage = () => {
             </p>
             <div className="search-container">
               <div className="search-box">
-                <Search className="search-icon" />
+               
                 <input 
                   type="text" 
                   placeholder="Enter Product ID to Trace Your Produce" 

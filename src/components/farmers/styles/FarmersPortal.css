@@ -1,579 +1,512 @@
 /* ---
-  FarmTrace Farmers Portal Stylesheet - Updated with New Color Palette
-  - A simple, clean, mobile-first design with modern gradients
+  FarmTrace Farmers Portal Stylesheet - Professional White + Light Green Design
+  - Clean, professional layout with app-like borders
+  - White background with light green accents
+  - Mobile-first design with bottom navigation
 --- */
 
 /* ==========================================================================
    1. GLOBAL STYLES & VARIABLES
    ========================================================================== */
 :root {
-  /* New Color Palette */
-  --sgbus-green: #7ddf64;
-  --mindaro: #c0df85;
-  --primary-green: var(--sgbus-green);
-  --light-green: var(--mindaro);
-  --dark-green: #4ade80;
+  /* Professional Color Palette */
+  --primary-green: #22c55e;
+  --light-green: #dcfce7;
+  --border-green: #bbf7d0;
+  --accent-green: #16a34a;
+  --hover-green: #15803d;
   
-  /* Gradients */
-  --gradient-primary: linear-gradient(135deg, #7ddf64, #c0df85);
-  --gradient-reverse: linear-gradient(135deg, #c0df85, #7ddf64);
-  --gradient-radial: radial-gradient(circle, #7ddf64, #c0df85);
-  
-  /* Background and UI Colors */
-  --background: linear-gradient(135deg, #f0fdf4 0%, #fefce8 100%);
-  --card-background: rgba(255, 255, 255, 0.9);
-  --light-green-bg: rgba(192, 223, 133, 0.1);
-  --border-color: rgba(125, 223, 100, 0.2);
+  /* Background Colors */
+  --background: #ffffff;
+  --card-background: #ffffff;
+  --header-bg: #ffffff;
+  --section-bg: #f9fafb;
   
   /* Text Colors */
-  --text-dark: #1f2937;
+  --text-primary: #111827;
+  --text-secondary: #374151;
   --text-muted: #6b7280;
+  --text-success: #16a34a;
   
-  /* Status Colors */
-  --status-on-farm: #3b82f6;
-  --status-in-transit: #f97316;
-  --status-sold: var(--sgbus-green);
+  /* Border & Shadow */
+  --border-color: #e5e7eb;
+  --border-accent: var(--border-green);
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  --app-shadow: 0 0 0 1px rgba(34, 197, 94, 0.1), 0 4px 20px rgba(34, 197, 94, 0.15);
   
-  /* Effects */
-  --shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-  --shadow-hover: 0 15px 35px rgba(0, 0, 0, 0.15);
+  /* Layout */
+  --max-width: 400px;
+  --container-padding: 1rem;
+  --border-radius: 12px;
+  --border-radius-small: 8px;
+  --app-border-width: 2px;
 }
 
-.farmers-portal, .login-container {
-  max-width: 480px;
-  margin: 0 auto;
-  height: 100vh;
-  background: var(--background);
-  display: flex;
-  flex-direction: column;
-  box-shadow: var(--shadow);
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: var(--section-bg);
+  color: var(--text-primary);
+  min-height: 100vh;
 }
 
 /* ==========================================================================
-   2. LOGIN SCREEN
+   2. MAIN CONTAINER & LAYOUT (APP-LIKE BORDER)
    ========================================================================== */
-.login-container { 
-  justify-content: space-between; 
-  padding: 1.5rem; 
+.farmers-portal, .login-container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  min-height: 100vh;
+  background: var(--background);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  border: var(--app-border-width) solid var(--border-accent);
+  border-radius: var(--border-radius);
+  box-shadow: var(--app-shadow);
+  overflow: hidden;
 }
 
-.language-selector { 
-  display: flex; 
-  align-items: center; 
-  gap: 0.5rem; 
-  color: var(--text-muted); 
+.screen-content {
+  flex: 1;
+  padding: var(--container-padding);
+  padding-bottom: 100px; /* Space for bottom nav */
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  background: var(--background);
 }
 
-.login-form { 
-  text-align: center; 
+.screen {
+  width: 100%;
+  max-width: 360px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.login-logo { 
-  width: 80px; 
-  height: 80px; 
-  margin-bottom: 1rem; 
-  background: var(--gradient-primary);
+/* ==========================================================================
+   3. HEADER STYLES
+   ========================================================================== */
+.screen-header {
+  background: var(--header-bg);
+  color: var(--text-primary);
+  padding: 1.5rem var(--container-padding);
+  margin: calc(-1 * var(--container-padding));
+  margin-bottom: 1.5rem;
+  border-bottom: 2px solid var(--border-accent);
+  text-align: center;
+  width: 100%;
+}
+
+.screen-header h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.screen-header-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.back-button {
+  background: var(--light-green);
+  border: 1px solid var(--border-accent);
+  padding: 0.75rem;
+  border-radius: var(--border-radius-small);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent-green);
+}
+
+.back-button:hover {
+  background: var(--border-green);
+  border-color: var(--primary-green);
+}
+
+/* ==========================================================================
+   4. BUTTONS & ACTIONS (CENTERED)
+   ========================================================================== */
+.btn {
+  border: 1px solid var(--border-color);
+  padding: 1rem 2rem;
+  border-radius: var(--border-radius-small);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  text-align: center;
+  background: var(--background);
+}
+
+.btn-primary {
+  background: var(--primary-green);
+  color: white;
+  border-color: var(--primary-green);
+}
+
+.btn-primary:hover {
+  background: var(--accent-green);
+  border-color: var(--accent-green);
+}
+
+.btn-secondary {
+  background: var(--light-green);
+  color: var(--accent-green);
+  border-color: var(--border-accent);
+}
+
+.btn-secondary:hover {
+  background: var(--border-green);
+  border-color: var(--primary-green);
+}
+
+.btn-full {
+  width: 100%;
+  max-width: 320px;
+  margin: 0 auto;
+}
+
+.btn-action {
+  width: 100%;
+  max-width: 320px;
+  padding: 1.25rem;
+  font-size: 1.1rem;
+  border-radius: var(--border-radius);
+  margin: 0 auto 1rem auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  transition: all 0.2s ease;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-color);
+}
+
+.primary-action {
+  background: var(--primary-green);
+  color: white;
+  border-color: var(--primary-green);
+}
+
+.primary-action:hover {
+  background: var(--accent-green);
+  border-color: var(--accent-green);
+  box-shadow: var(--shadow-md);
+}
+
+.secondary-action {
+  background: var(--light-green);
+  color: var(--accent-green);
+  border-color: var(--border-accent);
+}
+
+.secondary-action:hover {
+  background: var(--border-green);
+  border-color: var(--primary-green);
+}
+
+/* ==========================================================================
+   5. CARDS & WIDGETS (CENTERED)
+   ========================================================================== */
+.widget {
+  background: var(--card-background);
+  padding: 1.5rem;
+  border-radius: var(--border-radius);
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-color);
+  margin-bottom: 1rem;
+  width: 100%;
+  max-width: 320px;
+}
+
+.widget h3 {
+  color: var(--text-secondary);
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+}
+
+.summary-card, .detail-card {
+  background: var(--card-background);
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-color);
+  width: 100%;
+  max-width: 320px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.produce-card, .payment-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--card-background);
+  padding: 1rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-color);
+  transition: all 0.2s ease;
+  margin-bottom: 0.75rem;
+  width: 100%;
+  max-width: 320px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.produce-card:hover, .payment-item:hover {
+  box-shadow: var(--shadow-md);
+  border-color: var(--primary-green);
+}
+
+/* ==========================================================================
+   6. BOTTOM NAVIGATION (FIXED)
+   ========================================================================== */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: var(--max-width);
+  display: flex;
+  background: var(--background);
+  border-top: 2px solid var(--border-accent);
+  border-left: var(--app-border-width) solid var(--border-accent);
+  border-right: var(--app-border-width) solid var(--border-accent);
+  border-bottom: var(--app-border-width) solid var(--border-accent);
+  border-radius: 0 0 var(--border-radius) var(--border-radius);
+  z-index: 1000;
+}
+
+.nav-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  padding: 0.75rem 0;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.nav-item.active {
+  color: var(--primary-green);
+  font-weight: 700;
+}
+
+.nav-item:hover:not(.active) {
+  color: var(--text-secondary);
+}
+
+.nav-item svg {
+  width: 24px;
+  height: 24px;
+}
+
+.nav-icon {
+  background: var(--light-green);
+  border: 1px solid var(--border-accent);
+  border-radius: 50%;
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2px;
+  color: var(--accent-green);
+}
+
+.nav-item.active .nav-icon {
+  background: var(--primary-green);
+  color: white;
+  border-color: var(--primary-green);
+}
+
+/* ==========================================================================
+   7. FORM ELEMENTS (CENTERED)
+   ========================================================================== */
+.login-form {
+  text-align: center;
+  width: 100%;
+  max-width: 320px;
+  margin: 0 auto;
+  padding: 2rem 0;
+}
+
+.login-logo {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 1.5rem auto;
+  background: var(--primary-green);
+  border: 2px solid var(--border-accent);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   color: white;
   font-size: 2rem;
-  box-shadow: var(--shadow);
+  font-weight: 700;
+  box-shadow: var(--shadow-md);
 }
 
-.login-title { 
-  font-size: 1.75rem; 
-  color: var(--dark-green); 
+.login-title {
+  font-size: 1.75rem;
+  color: var(--text-primary);
   margin-bottom: 2rem;
   font-weight: 700;
-}
-
-.input-group { 
-  margin-bottom: 1.5rem; 
-  text-align: left; 
-}
-
-.input-group label { 
-  display: block; 
-  margin-bottom: 0.5rem; 
-  font-weight: 500; 
-  color: var(--text-dark); 
-}
-
-.input-group input, .input-group select { 
-  width: 100%; 
-  padding: 1rem; 
-  border: 2px solid var(--border-color); 
-  border-radius: 12px; 
-  font-size: 1rem;
-  transition: all 0.3s ease;
-  background: var(--card-background);
-}
-
-.input-group input:focus, .input-group select:focus {
-  outline: none;
-  border-color: var(--sgbus-green);
-  box-shadow: 0 0 0 3px rgba(125, 223, 100, 0.1);
-}
-
-.btn { 
-  border: none; 
-  padding: 1rem; 
-  border-radius: 12px; 
-  font-size: 1.1rem; 
-  font-weight: 600; 
-  cursor: pointer;
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-}
-
-.btn::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-  transition: left 0.5s;
-}
-
-.btn:hover::before {
-  left: 100%;
-}
-
-.btn-primary { 
-  background: var(--gradient-primary);
-  color: white;
-  box-shadow: var(--shadow);
-}
-
-.btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-hover);
-}
-
-.btn-secondary { 
-  background: var(--light-green-bg);
-  color: var(--dark-green);
-  border: 2px solid var(--border-color);
-}
-
-.btn-secondary:hover {
-  background: var(--gradient-reverse);
-  color: white;
-  border-color: var(--sgbus-green);
-}
-
-.btn-full { 
-  width: 100%; 
-}
-
-.help-link { 
-  display: block; 
-  margin-top: 1.5rem; 
-  color: var(--sgbus-green); 
-  text-decoration: none;
-  font-weight: 500;
-}
-
-.help-link:hover {
-  color: var(--dark-green);
-  text-decoration: underline;
-}
-
-/* ==========================================================================
-   3. MAIN APP STRUCTURE
-   ========================================================================== */
-.screen-content { 
-  flex-grow: 1; 
-  overflow-y: auto; 
-  background: var(--background);
-}
-
-.screen { 
-  padding: 1.5rem; 
-}
-
-.screen-header { 
-  padding-bottom: 1.5rem; 
-  border-bottom: 2px solid var(--border-color);
-  background: var(--gradient-primary);
-  color: white;
-  margin: -1.5rem -1.5rem 1.5rem -1.5rem;
-  padding: 2rem 1.5rem 1.5rem 1.5rem;
-  border-radius: 0 0 20px 20px;
-}
-
-.screen-header h1 { 
-  color: white;
-  font-weight: 700;
-  font-size: 1.5rem;
-}
-
-.screen-header-nav { 
-  display: flex; 
-  align-items: center; 
-  gap: 1rem; 
-  padding-bottom: 1rem; 
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-  margin-bottom: 1rem;
-}
-
-.back-button { 
-  background: rgba(255, 255, 255, 0.2); 
-  border: none; 
-  padding: 0.75rem;
-  border-radius: 12px;
-  color: white;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.back-button:hover {
-  background: rgba(255, 255, 255, 0.3);
-  transform: scale(1.05);
-}
-
-.screen-body { 
-  padding-top: 1.5rem; 
-}
-
-.list-view { 
-  display: flex; 
-  flex-direction: column; 
-  gap: 1rem; 
-}
-
-/* Bottom Navigation Bar */
-.bottom-nav { 
-  display: flex; 
-  border-top: 2px solid var(--border-color);
-  background: var(--gradient-primary);
-  backdrop-filter: blur(20px);
-  box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.1);
-}
-
-.nav-item { 
-  flex: 1; 
-  display: flex; 
-  flex-direction: column; 
-  align-items: center; 
-  gap: 0.25rem; 
-  padding: 0.75rem 0; 
-  background: none; 
-  border: none; 
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 0.8rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  position: relative;
-}
-
-.nav-item::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 0;
-  height: 3px;
-  background: white;
-  transition: width 0.3s ease;
-}
-
-.nav-item.active::before {
-  width: 60%;
-}
-
-.nav-item.active { 
-  color: white;
-  font-weight: 600;
-  transform: scale(1.05);
-}
-
-.nav-item:hover:not(.active) {
-  color: rgba(255, 255, 255, 0.9);
-  transform: scale(1.02);
-}
-
-/* ==========================================================================
-   4. HOME & REGISTER SCREENS
-   ========================================================================== */
-.btn-action { 
-  width: 100%; 
-  padding: 1.5rem; 
-  font-size: 1.25rem; 
-  border-radius: 16px; 
-  margin-bottom: 1rem; 
-  display: flex; 
-  align-items: center; 
-  justify-content: center; 
-  gap: 0.75rem;
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-}
-
-.btn-action::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-  transition: left 0.5s;
-}
-
-.btn-action:hover::before {
-  left: 100%;
-}
-
-.btn-action:hover {
-  transform: translateY(-5px);
-  box-shadow: var(--shadow-hover);
-}
-
-.primary-action { 
-  background: var(--gradient-primary);
-  color: white;
-  box-shadow: var(--shadow);
-}
-
-.secondary-action { 
-  background: var(--light-green-bg);
-  color: var(--dark-green);
-  border: 2px solid var(--border-color);
-}
-
-.secondary-action:hover {
-  background: var(--gradient-reverse);
-  color: white;
-}
-
-.photo-action { 
-  background: linear-gradient(135deg, #e0f2fe 0%, #b3e5fc 100%);
-  color: #0284c7;
-  border: 2px solid #b3e5fc;
-}
-
-.widget { 
-  background: var(--card-background);
-  backdrop-filter: blur(10px);
-  padding: 1.5rem; 
-  border-radius: 16px; 
   text-align: center;
-  border: 2px solid var(--border-color);
-  box-shadow: var(--shadow);
-  position: relative;
-  overflow: hidden;
 }
 
-.widget::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  right: -50%;
+.input-group {
+  margin-bottom: 1.5rem;
+  text-align: left;
   width: 100%;
-  height: 100%;
-  background: var(--gradient-radial);
-  opacity: 0.05;
 }
 
-.widget h3 { 
+.input-group label {
+  display: block;
   margin-bottom: 0.5rem;
-  color: var(--dark-green);
-  font-weight: 700;
+  font-weight: 600;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
 }
 
-.step-title { 
-  font-size: 1.25rem; 
-  margin-bottom: 2rem; 
-  text-align: center; 
-  color: var(--dark-green);
-  font-weight: 700;
-}
-
-.help-text { 
-  text-align: center; 
-  color: var(--text-muted); 
-  margin: 1rem 0; 
-}
-
-.summary-card { 
+.input-group input,
+.input-group select {
+  width: 100%;
+  padding: 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-small);
+  font-size: 1rem;
+  transition: all 0.2s ease;
   background: var(--card-background);
-  backdrop-filter: blur(10px);
-  border-radius: 16px; 
-  padding: 1rem; 
-  text-align: left; 
-  margin-bottom: 2rem;
-  border: 2px solid var(--border-color);
-  box-shadow: var(--shadow);
+  color: var(--text-primary);
 }
 
-.summary-card p { 
-  margin-bottom: 0.5rem; 
-}
-
-.qr-display { 
-  text-align: center; 
-}
-
-.qr-code-placeholder { 
-  width: 200px; 
-  height: 200px; 
-  background: var(--gradient-primary);
-  margin: 2rem auto; 
-  display: flex; 
-  align-items: center; 
-  justify-content: center; 
-  color: white;
-  border-radius: 20px;
-  box-shadow: var(--shadow);
+.input-group input:focus,
+.input-group select:focus {
+  outline: none;
+  border-color: var(--primary-green);
+  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.1);
 }
 
 /* ==========================================================================
-   5. MY PRODUCE & PAYMENTS
+   8. STATUS & INDICATORS
    ========================================================================== */
-.produce-card, .payment-item { 
-  display: flex; 
-  justify-content: space-between; 
-  align-items: center; 
-  background: var(--card-background);
-  backdrop-filter: blur(10px);
-  padding: 1rem; 
-  border-radius: 16px;
-  border: 2px solid var(--border-color);
-  box-shadow: var(--shadow);
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-}
-
-.produce-card::before, .payment-item::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: var(--gradient-primary);
-  opacity: 0;
-  transition: opacity 0.3s;
-}
-
-.produce-card:hover, .payment-item:hover {
-  transform: translateY(-5px);
-  box-shadow: var(--shadow-hover);
-  border-color: var(--sgbus-green);
-}
-
-.produce-card:hover::before, .payment-item:hover::before {
-  opacity: 0.05;
-}
-
-.card-info h4 { 
-  margin-bottom: 0.25rem;
-  color: var(--dark-green);
+.status-tag {
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
   font-weight: 700;
-}
-
-.card-info p { 
-  color: var(--text-muted); 
-}
-
-.status-tag { 
-  padding: 0.5rem 1rem; 
-  border-radius: 20px; 
-  font-size: 0.8rem; 
-  font-weight: 700; 
   color: white;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  border: 1px solid transparent;
 }
 
-.status-on-farm { 
-  background: linear-gradient(135deg, var(--status-on-farm) 0%, #1d4ed8 100%);
+.status-on-farm {
+  background: #3b82f6;
+  border-color: #2563eb;
 }
 
-.status-in-transit { 
-  background: linear-gradient(135deg, var(--status-in-transit) 0%, #ea580c 100%);
+.status-in-transit {
+  background: #f97316;
+  border-color: #ea580c;
 }
 
-.status-sold { 
-  background: var(--gradient-primary);
-}
-
-.payment-amount { 
-  font-size: 1.25rem; 
-  font-weight: 700; 
-  color: var(--dark-green); 
-}
-
-.payment-details { 
-  text-align: right; 
-}
-
-.payment-details p { 
-  font-size: 0.9rem; 
-}
-
-.payment-details span { 
-  font-size: 0.8rem; 
-  color: var(--text-muted); 
+.status-sold {
+  background: var(--primary-green);
+  border-color: var(--accent-green);
 }
 
 /* ==========================================================================
-   6. PROFILE SCREEN
+   9. PROFILE & LIST ITEMS
    ========================================================================== */
-.profile-info { 
-  text-align: center; 
-  padding: 2rem 0; 
-  border-bottom: 2px solid var(--border-color);
-  background: var(--gradient-primary);
-  color: white;
-  border-radius: 20px 20px 0 0;
-  margin: -1.5rem -1.5rem 2rem -1.5rem;
-  padding: 2rem 1.5rem;
+.profile-info {
+  text-align: center;
+  padding: 2rem var(--container-padding);
+  background: var(--light-green);
+  color: var(--text-primary);
+  border-bottom: 2px solid var(--border-accent);
+  margin: calc(-1 * var(--container-padding));
+  margin-bottom: 2rem;
+  width: 100%;
 }
 
-.profile-info h2 { 
-  color: white;
+.profile-avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: white;
+  border: 2px solid var(--border-accent);
+  color: var(--accent-green);
+  margin: 0 auto 1rem auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
   font-weight: 700;
-  margin-bottom: 0.5rem;
+  box-shadow: var(--shadow-md);
 }
 
-.profile-info p { 
-  color: rgba(255, 255, 255, 0.8);
-}
-
-.list-button { 
+.list-button {
   background: var(--card-background);
-  backdrop-filter: blur(10px);
-  color: var(--text-dark); 
-  width: 100%; 
-  text-align: left; 
-  padding: 1rem; 
-  border-radius: 12px; 
-  border: 2px solid var(--border-color);
+  color: var(--text-primary);
+  width: 100%;
+  max-width: 320px;
+  margin: 0 auto 0.75rem auto;
+  text-align: left;
+  padding: 1rem 1.25rem;
+  border-radius: var(--border-radius-small);
+  border: 1px solid var(--border-color);
   font-size: 1rem;
   cursor: pointer;
-  transition: all 0.3s ease;
-  margin-bottom: 0.75rem;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  box-shadow: var(--shadow-sm);
 }
 
 .list-button:hover {
-  border-color: var(--sgbus-green);
-  background: var(--light-green-bg);
-  color: var(--dark-green);
-  transform: translateX(5px);
+  border-color: var(--primary-green);
+  box-shadow: var(--shadow-md);
 }
 
-.list-button.logout { 
+.list-button.logout {
   color: #dc2626;
   border-color: #fca5a5;
 }
@@ -584,228 +517,154 @@
 }
 
 /* ==========================================================================
-   7. ADDITIONAL STYLES FOR NEW SCREENS
+   10. QR CODE & SPECIAL ELEMENTS
    ========================================================================== */
-
-/* My Produce Screen */
-.produce-card {
-    width: 100%;
-    background: var(--card-background);
-    backdrop-filter: blur(10px);
-    border: 2px solid var(--border-color);
-    text-align: left;
+.qr-display {
+  text-align: center;
+  width: 100%;
 }
 
-/* Produce Detail Screen */
-.detail-photo {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 16px;
-    margin-bottom: 1.5rem;
-    box-shadow: var(--shadow);
+.qr-code-placeholder {
+  width: 200px;
+  height: 200px;
+  background: var(--light-green);
+  border: 2px solid var(--border-accent);
+  margin: 1.5rem auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent-green);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-md);
+  font-size: 1rem;
+  font-weight: 600;
 }
 
-.detail-card {
-    background: var(--card-background);
-    backdrop-filter: blur(10px);
-    border: 2px solid var(--border-color);
-    border-radius: 16px;
-    padding: 1.5rem;
-    margin-bottom: 1rem;
-    box-shadow: var(--shadow);
-}
-
-.detail-card h2 {
-    font-size: 1.25rem;
-    color: var(--dark-green);
-    margin-bottom: 1rem;
-    border-bottom: 2px solid var(--border-color);
-    padding-bottom: 0.75rem;
-    font-weight: 700;
-}
-
-.qr-card {
-    text-align: center;
-}
-
-.details-list {
-    list-style: none;
-    padding: 0;
-}
-
-.details-list li {
-    padding: 0.5rem 0;
-    font-size: 1rem;
-    border-bottom: 1px solid var(--border-color);
-}
-
-.details-list li:last-child {
-    border-bottom: none;
-}
-
-/* Journey Timeline */
-.timeline {
-    list-style: none;
-    padding: 0;
-}
-
-.timeline-item {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    padding: 0.75rem 0;
-}
-
-.timeline-icon {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--gradient-primary);
-    color: white;
-    box-shadow: var(--shadow);
-    font-weight: bold;
-}
-
-.timeline-item.complete {
-    color: var(--text-dark);
-}
-
-/* Payments Screen */
+/* ==========================================================================
+   11. PAYMENT SPECIFIC STYLES
+   ========================================================================== */
 .total-balance-card {
-    background: var(--gradient-primary);
-    color: white;
-    padding: 2rem;
-    border-radius: 20px;
-    text-align: center;
-    margin-bottom: 1rem;
-    box-shadow: var(--shadow);
-    position: relative;
-    overflow: hidden;
-}
-
-.total-balance-card::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    right: -50%;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
-}
-
-.total-balance-card span {
-    opacity: 0.9;
-    position: relative;
-    z-index: 2;
+  background: var(--primary-green);
+  color: white;
+  padding: 2rem;
+  border-radius: var(--border-radius);
+  border: 2px solid var(--accent-green);
+  text-align: center;
+  margin-bottom: 1.5rem;
+  box-shadow: var(--shadow-md);
+  width: 100%;
+  max-width: 320px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .total-balance-card h3 {
-    font-size: 2.5rem;
-    margin-top: 0.5rem;
-    font-weight: 700;
-    position: relative;
-    z-index: 2;
-}
-
-.payment-item {
-    background: var(--card-background);
-    backdrop-filter: blur(10px);
-    border: 2px solid var(--border-color);
+  font-size: 2.25rem;
+  margin-top: 0.5rem;
+  font-weight: 700;
 }
 
 .payment-icon {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--gradient-primary);
-    color: white;
-    box-shadow: var(--shadow);
-    font-size: 1.25rem;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--primary-green);
+  color: white;
+  border: 1px solid var(--accent-green);
+  font-size: 1.1rem;
+  font-weight: 600;
 }
 
-.payment-details p {
-    font-weight: 600;
-    color: var(--dark-green);
+/* ==========================================================================
+   12. UTILITY CLASSES
+   ========================================================================== */
+.text-center { text-align: center; }
+.text-muted { color: var(--text-muted); }
+.mb-1 { margin-bottom: 1rem; }
+.mb-2 { margin-bottom: 2rem; }
+.p-1 { padding: 1rem; }
+
+.list-view {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
 }
 
-/* Profile Screen */
-.profile-avatar {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    background: var(--gradient-primary);
-    margin: 0 auto 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-size: 2rem;
-    box-shadow: var(--shadow);
-    font-weight: bold;
+.step-title {
+  font-size: 1.25rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  color: var(--text-primary);
+  font-weight: 700;
 }
 
-.list-button {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    background: var(--card-background);
-    backdrop-filter: blur(10px);
-    border: 2px solid var(--border-color);
+.help-text {
+  text-align: center;
+  color: var(--text-muted);
+  margin: 1rem 0;
+  font-size: 0.9rem;
 }
 
-/* Responsive improvements */
-@media (min-width: 768px) {
-    .farmers-portal, .login-container {
-        max-width: 100%;
-    }
-    
-    .screen {
-        padding: 2rem;
-    }
-    
-    .btn-action {
-        font-size: 1.1rem;
-    }
+/* ==========================================================================
+   13. APP-SPECIFIC ENHANCEMENTS
+   ========================================================================== */
+.app-container {
+  box-shadow: var(--app-shadow);
+  border: var(--app-border-width) solid var(--border-accent);
 }
 
-/* Animation enhancements */
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+.section-divider {
+  height: 1px;
+  background: var(--border-color);
+  margin: 1.5rem 0;
+  width: 100%;
 }
 
-.produce-card, .payment-item, .widget, .detail-card {
-    animation: fadeInUp 0.6s ease-out forwards;
+.notification-badge {
+  background: #ef4444;
+  color: white;
+  border-radius: 50%;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  min-width: 1.25rem;
+  text-align: center;
+  border: 1px solid white;
 }
 
-.produce-card:nth-child(2) {
-    animation-delay: 0.1s;
+/* ==========================================================================
+   14. RESPONSIVE ADJUSTMENTS
+   ========================================================================== */
+@media (max-width: 380px) {
+  :root {
+    --container-padding: 0.75rem;
+    --max-width: 100%;
+  }
+  
+  .btn-action, .widget, .summary-card, .produce-card, .payment-item {
+    max-width: 100%;
+  }
+  
+  .farmers-portal, .login-container {
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+  }
+  
+  .bottom-nav {
+    border-left: none;
+    border-right: none;
+    border-radius: 0;
+  }
 }
 
-.produce-card:nth-child(3) {
-    animation-delay: 0.2s;
-}
-
-/* Hover effects for better interactivity */
-.btn, .btn-action, .produce-card, .payment-item, .list-button {
-    cursor: pointer;
-}
-
-/* Focus states for accessibility */
-.btn:focus, .btn-action:focus, .nav-item:focus, .list-button:focus {
-    outline: 3px solid rgba(125, 223, 100, 0.5);
-    outline-offset: 2px;
+@media (min-width: 420px) {
+  :root {
+    --max-width: 420px;
+  }
 }
