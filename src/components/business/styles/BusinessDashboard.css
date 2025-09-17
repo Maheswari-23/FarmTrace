@@ -1,0 +1,197 @@
+/* Import a professional font */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+/* --- CSS Color Variables (Light Blue Theme) --- */
+:root {
+  --business-primary-blue: #3b82f6;
+  --business-primary-blue-dark: #2563eb;
+  --business-primary-blue-light: #eff6ff;
+  --business-text-dark: #1f2937;
+  --business-text-medium: #4b5563;
+  --business-text-light: #6b7280;
+  --business-bg-main: #f8fafc;
+  --business-border-color: #e5e7eb;
+  --business-success-color: #10b981;
+  --business-success-bg: #f0fdf4;
+  --business-danger-color: #ef4444;
+  --business-danger-bg: #fef2f2;
+  --business-shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --business-shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+
+/* --- Main Container --- */
+.business-dashboard-container {
+  padding: 2.5rem;
+  font-family: 'Inter', sans-serif;
+  background-color: var(--business-bg-main);
+}
+
+/* --- Page Header --- */
+.business-dashboard-header {
+  margin-bottom: 2rem;
+}
+
+.business-dashboard-header h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--business-text-dark);
+  margin: 0 0 0.25rem 0;
+}
+
+.business-dashboard-header p {
+  font-size: 1rem;
+  color: var(--business-text-light);
+  margin: 0;
+}
+
+/* --- KPI Cards Grid --- */
+#business-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.business-kpi-card {
+  background-color: white;
+  border: 1px solid var(--business-border-color);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: var(--business-shadow-sm);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.business-kpi-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--business-shadow-md);
+}
+
+.business-kpi-card__icon {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--business-primary-blue-light);
+  color: var(--business-primary-blue);
+}
+
+.business-kpi-card__info {
+  flex-grow: 1;
+}
+
+.business-kpi-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.25rem;
+}
+
+.business-kpi-card__value {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--business-text-dark);
+  line-height: 1;
+}
+
+.business-kpi-card__change {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.25rem 0.5rem;
+  border-radius: 999px;
+}
+
+.business-kpi-card__change--positive {
+  color: var(--business-success-color);
+  background-color: var(--business-success-bg);
+}
+
+.business-kpi-card__change--negative {
+  color: var(--business-danger-color);
+  background-color: var(--business-danger-bg);
+}
+
+.business-kpi-card__title {
+  font-size: 0.875rem;
+  color: var(--business-text-light);
+}
+
+/* --- Main Content Grid (Charts & Activity) --- */
+#business-main-content-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 1.5rem;
+  align-items: flex-start;
+}
+
+.business-dashboard-card {
+  background-color: white;
+  border: 1px solid var(--business-border-color);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: var(--business-shadow-sm);
+}
+
+.business-dashboard-card__title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--business-text-dark);
+  margin: 0 0 1.5rem 0;
+}
+
+.business-chart-placeholder {
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  background-color: #f9fafb;
+  color: var(--business-text-light);
+  font-size: 0.875rem;
+}
+
+/* --- Activity Feed --- */
+.business-activity-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.business-activity-item {
+  display: flex;
+  gap: 1rem;
+  padding: 0.75rem 0.25rem;
+}
+
+.business-activity-item:not(:last-child) {
+  border-bottom: 1px solid var(--business-border-color);
+}
+
+.business-activity-item__icon {
+  flex-shrink: 0;
+  color: var(--business-primary-blue);
+  margin-top: 2px;
+}
+
+.business-activity-item__details p {
+  margin: 0;
+  line-height: 1.4;
+}
+
+.business-activity-item__message {
+  font-size: 0.875rem;
+  color: var(--business-text-medium);
+  margin-bottom: 0.25rem !important;
+}
+
+.business-activity-item__time {
+  font-size: 0.75rem;
+  color: var(--business-text-light);
+}

@@ -1,0 +1,147 @@
+.history-container {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  background-color: #f9fafc;
+  min-height: 100vh;
+}
+
+.page-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Filter Bar */
+.filter-bar {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.filter-bar select,
+.filter-bar input[type="text"],
+.custom-range input {
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+}
+
+.custom-range {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+/* Table */
+.history-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0px 2px 6px rgba(0,0,0,0.1);
+}
+
+.history-table th,
+.history-table td {
+  padding: 12px 15px;
+  border-bottom: 1px solid #f0f0f0;
+  text-align: left;
+}
+
+.history-table th {
+  background: #f1f5f9;
+  font-weight: bold;
+  color: #333;
+}
+
+.clickable-row {
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.clickable-row:hover {
+  background-color: #f9f9f9;
+}
+
+.no-data {
+  text-align: center;
+  color: #999;
+  padding: 20px;
+}
+
+/* Status Badge */
+.status {
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: bold;
+  color: white;
+}
+
+.status.completed {
+  background-color: #4caf50;
+}
+
+.status.pending {
+  background-color: #ff9800;
+}
+
+.status.failed {
+  background-color: #f44336;
+}
+
+/* Modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  max-width: 600px;
+  width: 100%;
+  box-shadow: 0px 4px 12px rgba(0,0,0,0.2);
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.modal-content h2 {
+  margin-bottom: 10px;
+}
+
+.modal-content ul {
+  margin: 10px 0;
+  padding-left: 20px;
+}
+
+.close-btn {
+  padding: 10px 15px;
+  background-color: #f44336;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.close-btn:hover {
+  background-color: #d32f2f;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}

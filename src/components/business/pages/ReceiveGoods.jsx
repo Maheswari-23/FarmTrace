@@ -1,52 +1,96 @@
-import React, { useState } from 'react';
-import { Camera, CheckCircle } from 'lucide-react';
-import FarmerPhoto from '../../../assets/hero-image.jpg'; // Placeholder photo
+import React, { useState } from "react";
+import "../styles/ReceiveGoods.css";
 
 const ReceiveGoods = () => {
-    const [scannedData, setScannedData] = useState(null);
+  const [assetId, setAssetId] = useState("");
+  const [batchDetails, setBatchDetails] = useState(null);
 
-    const handleScan = () => {
-        // This would trigger the camera in a real app
-        // For now, we'll mock the result of a successful scan
-        setScannedData({
-            product: '100kg of Roma Tomatoes',
-            source: 'Farmer Kumar',
-            photo: FarmerPhoto
-        });
-    };
+  // Simulated QR Scan (in a real app, integrate a QR library like react-qr-reader)
+  const handleScanQR = () => {
+    // Simulated result
+    const scannedId = "ASSET-2025-001";
+    setAssetId(scannedId);
 
-    return (
-        <div>
-            <h2 className="page-title">Receive a New Delivery</h2>
-            <div className="card receive-goods-card">
-                {!scannedData ? (
-                    <div className="scanner-interface">
-                        <button className="btn-scan" onClick={handleScan}>
-                            <Camera size={48} />
-                            <span>Scan QR Code via Camera</span>
-                        </button>
-                        <p className="or-divider"><span>OR</span></p>
-                        <div className="manual-entry">
-                            <input type="text" placeholder="Manually Enter Asset ID" />
-                            <button className="btn btn-secondary">Find</button>
-                        </div>
-                    </div>
-                ) : (
-                    <div className="verification-step">
-                        <h3 className="verification-title"><CheckCircle size={28} /> Product Verified</h3>
-                        <div className="trace-details">
-                            <img src={scannedData.photo} alt="Harvest" className="trace-photo" />
-                            <p className="verification-text">
-                                You are about to receive: <strong>{scannedData.product}</strong> from <strong>{scannedData.source}</strong>.
-                            </p>
-                        </div>
-                        <button className="btn btn-primary btn-confirm">
-                            Confirm & Accept Delivery
-                        </button>
-                    </div>
-                )}
-            </div>
+    // Simulated fetch from blockchain
+    setBatchDetails({
+      id: scannedId,
+      product: "Roma Tomatoes",
+      quantity: "100kg",
+      source: "Distributor Ramesh",
+      photo: "https://via.placeholder.com/200" // placeholder harvest photo
+    });
+  };
+
+  const handleVerify = () => {
+    if (assetId.trim() === "") {
+      alert("Please enter or scan an Asset ID");
+      return;
+    }
+
+    // Simulated blockchain check
+    setBatchDetails({
+      id: assetId,
+      product: "Roma Tomatoes",
+      quantity: "100kg",
+      source: "Farmer Priya",
+      photo: "https://via.placeholder.com/200"
+    });
+  };
+
+  const handleConfirm = () => {
+    alert(`Delivery ${batchDetails.id} confirmed & recorded on blockchain ✅`);
+    // Reset form after confirmation
+    setAssetId("");
+    setBatchDetails(null);
+  };
+
+  return (
+    <div className="receive-container">
+      {/* Page Title */}
+      <h1 className="page-title">Receive a New Delivery</h1>
+
+      {/* QR Scanner + Manual Entry */}
+      <div className="scanner-section">
+        <button className="scan-btn" onClick={handleScanQR}>
+          [+] Scan QR Code via Camera
+        </button>
+        <p className="or-text">OR</p>
+        <input
+          type="text"
+          placeholder="Enter Asset ID manually"
+          value={assetId}
+          onChange={(e) => setAssetId(e.target.value)}
+        />
+        <button className="verify-btn" onClick={handleVerify}>
+          Verify Asset
+        </button>
+      </div>
+
+      {/* Verification Step */}
+      {batchDetails && (
+        <div className="verification-section">
+          <h2>Verification</h2>
+          <p>
+            You are about to receive:{" "}
+            <strong>
+              {batchDetails.quantity} of {batchDetails.product}
+            </strong>{" "}
+            from <strong>{batchDetails.source}</strong>.
+          </p>
+          <img
+            src={batchDetails.photo}
+            alt="Harvest"
+            className="harvest-photo"
+          />
+
+          {/* Confirmation */}
+          <button className="confirm-btn" onClick={handleConfirm}>
+            Confirm & Accept Delivery
+          </button>
         </div>
-    );
+      )}
+    </div>
+  );
 };
+
 export default ReceiveGoods;
