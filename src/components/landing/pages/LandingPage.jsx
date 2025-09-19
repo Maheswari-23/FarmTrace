@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Search, Leaf, Users, Shield, TrendingUp, QrCode, MapPin, CheckCircle, Menu, X, ArrowRight, Star, Award, Twitter, Linkedin, Facebook } from 'lucide-react';
 import '../styles/LandingPage.css';
 import Logo from '../../../assets/logo.png'; // Your logo path
@@ -32,6 +33,7 @@ const useIntersectionObserver = (options) => {
 };
 
 const LandingPage = () => {
+  const navigate = useNavigate();
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchValue, setSearchValue] = useState('');
@@ -55,7 +57,7 @@ const LandingPage = () => {
     document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
     setMobileMenuOpen(false);
   };
-  
+ 
   const handleSearch = () => {
     if (searchValue.trim()) console.log('Searching for:', searchValue);
   };
@@ -67,7 +69,11 @@ const LandingPage = () => {
   const handleStepClick = (stepIndex) => {
     setActiveStep(stepIndex);
   };
-  
+
+  const handleLoginClick = () => {
+    navigate('/login');
+  };
+ 
   const steps = [
     { icon: <Users className="step-icon" />, title: "Farmer Registers", description: "Farmers create a digital record of their harvest on our mobile app." },
     { icon: <QrCode className="step-icon" />, title: "QR Code is Generated", description: "A unique, unchangeable QR code is created as a digital passport for the produce." },
@@ -96,7 +102,7 @@ const LandingPage = () => {
             </div>
 
             <div className="nav-actions">
-              <button className="login-btn desktop-only">Login</button>
+              <button className="login-btn desktop-only" onClick={handleLoginClick}>Login</button>
               <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="mobile-menu-btn">
                 {mobileMenuOpen ? <X className="icon" /> : <Menu className="icon" />}
               </button>
@@ -109,7 +115,7 @@ const LandingPage = () => {
             <button onClick={() => scrollToSection('value-section')} className="mobile-nav-link">For Farmers</button>
             <button onClick={() => scrollToSection('for-business')} className="mobile-nav-link">For Business</button>
             <button onClick={() => scrollToSection('value-section')} className="mobile-nav-link">For Consumers</button>
-            <button className="mobile-login-btn">Login</button>
+            <button className="mobile-login-btn" onClick={handleLoginClick}>Login</button>
           </div>
         </div>
       </nav>
@@ -127,14 +133,13 @@ const LandingPage = () => {
             </p>
             <div className="search-container">
               <div className="search-box">
-               
-                <input 
-                  type="text" 
-                  placeholder="Enter Product ID to Trace Your Produce" 
-                  className="search-input" 
-                  value={searchValue} 
-                  onChange={(e) => setSearchValue(e.target.value)} 
-                  onKeyPress={handleKeyPress} 
+                <input
+                  type="text"
+                  placeholder="Enter Product ID to Trace Your Produce"
+                  className="search-input"
+                  value={searchValue}
+                  onChange={(e) => setSearchValue(e.target.value)}
+                  onKeyPress={handleKeyPress}
                 />
                 <button className="search-btn" onClick={handleSearch}>
                   <span>Trace</span>
@@ -158,7 +163,7 @@ const LandingPage = () => {
             <h2 className="section-title">A Journey You Can Trust</h2>
             <p className="section-subtitle">From farm registration to consumer verification, experience complete transparency in your food journey.</p>
           </div>
-          
+         
           <div className="progress-bar-container animate-on-scroll">
             <div className="progress-track">
               <div className="progress-fill" style={{ width: `${(activeStep / (steps.length - 1)) * 100}%` }}></div>
@@ -167,7 +172,7 @@ const LandingPage = () => {
 
           <div className="steps-container">
             {steps.map((step, index) => (
-              <div 
+              <div
                 key={index}
                 className={`step-card animate-on-scroll ${activeStep === index ? 'step-active' : ''}`}
                 onClick={() => handleStepClick(index)}
@@ -191,26 +196,26 @@ const LandingPage = () => {
             </div>
             <div className="value-cards">
                 {[
-                    { 
-                      id: "for-farmers", 
-                      icon: <Leaf className="value-icon" />, 
-                      title: "Empowering Farmers", 
-                      description: "Our platform ensures farmers receive fair prices and guaranteed payments, building their reputation through transparent practices.", 
-                      features: ["Fair Pricing", "Guaranteed Payments", "Market Access", "Reputation Building"] 
+                    {
+                      id: "for-farmers",
+                      icon: <Leaf className="value-icon" />,
+                      title: "Empowering Farmers",
+                      description: "Our platform ensures farmers receive fair prices and guaranteed payments, building their reputation through transparent practices.",
+                      features: ["Fair Pricing", "Guaranteed Payments", "Market Access", "Reputation Building"]
                     },
-                    { 
-                      id: "for-consumers", 
-                      icon: <Shield className="value-icon" />, 
-                      title: "Assuring Consumers", 
-                      description: "Know exactly where your food comes from. Verify quality, safety, and farming practices through immutable blockchain records.", 
-                      features: ["Complete Traceability", "Quality Verification", "Safety Standards", "Informed Choices"] 
+                    {
+                      id: "for-consumers",
+                      icon: <Shield className="value-icon" />,
+                      title: "Assuring Consumers",
+                      description: "Know exactly where your food comes from. Verify quality, safety, and farming practices through immutable blockchain records.",
+                      features: ["Complete Traceability", "Quality Verification", "Safety Standards", "Informed Choices"]
                     },
-                    { 
-                      id: "for-ecosystem", 
-                      icon: <TrendingUp className="value-icon" />, 
-                      title: "Building Sustainability", 
-                      description: "Transparency reduces food waste by improving supply chain efficiency, supporting local farmers and reducing environmental impact.", 
-                      features: ["Reduced Waste", "Supply Chain Efficiency", "Local Support", "Eco-friendly"] 
+                    {
+                      id: "for-ecosystem",
+                      icon: <TrendingUp className="value-icon" />,
+                      title: "Building Sustainability",
+                      description: "Transparency reduces food waste by improving supply chain efficiency, supporting local farmers and reducing environmental impact.",
+                      features: ["Reduced Waste", "Supply Chain Efficiency", "Local Support", "Eco-friendly"]
                     }
                 ].map((card, index) => (
                     <div key={index} id={card.id} className="value-card animate-on-scroll">
@@ -290,7 +295,7 @@ const LandingPage = () => {
                 <li><a href="#" className="footer-link">FAQs</a></li>
               </ul>
             </div>
-            
+           
             {/* Column 4: Newsletter */}
             <div className="footer-column">
               <h3 className="footer-title">Stay Updated</h3>
