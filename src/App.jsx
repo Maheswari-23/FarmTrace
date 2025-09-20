@@ -7,6 +7,8 @@ import Login from './components/landing/pages/Login';
 import AdminPortal from './components/admin/Admin';
 import BusinessPortal from './components/business/BusinessPortal';
 import FarmersPortal from './components/farmers/FarmersPortal';
+import Retailer from './components/retailer/Retailer';
+
 
 import './App.css';
 
@@ -27,6 +29,9 @@ function App() {
 
       {/* Route for the farmers portal */}
       <Route path="/farmer" element={<FarmersPortal />} />
+
+      
+      <Route path="/retailer" element={<Retailer />} />
     </Routes>
   );
 }
